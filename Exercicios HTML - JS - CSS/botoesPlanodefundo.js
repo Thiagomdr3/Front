@@ -1,47 +1,36 @@
-function FundoVermelho()
+function PlanodeFundo(cor)
 {
-    var botao = document.getElementById("body");
+    switch (cor){
+        case 1:
+            var botao = document.getElementById("body");
     botao.style.backgroundColor="red";
-}
+    document.getElementById("linkVermelho").style.color = "white";
+            break;
 
-function FundoVerde()
-{
-    var botao = document.getElementById("body");
-    botao.style.backgroundColor="green";
-}
-
-function FundoAmarelo()
-{
-    var botao = document.getElementById("body");
-    botao.style.backgroundColor="yellow";
-}
-
-function FundoAzul()
-{
-    var botao = document.getElementById("body");
-    botao.style.backgroundColor="blue";
-}
-/////////////           Exercicio 2           //////////////////////////////////////////
-function mouseOverRed() {
-  document.getElementById("corpo").style.backgroundColor = "red";
-  document.getElementById("linkVermelho").style.color = "white";
-}
-function mouseOverBlue() {
-    document.getElementById("corpo").style.backgroundColor = "blue";
+        case 2:
+            var botao = document.getElementById("body");
+    botao.style.backgroundColor="green";    
     document.getElementById("linkAzul").style.color = "white";
-}
+            break;
 
-function mouseOverYellow() {
-    document.getElementById("corpo").style.backgroundColor = "yellow";
+        case 3:
+            var botao = document.getElementById("body");
+    botao.style.backgroundColor="yellow";
     document.getElementById("linkAmarelo").style.color = "white";
+            break;
+
+        case 4:
+            var botao = document.getElementById("body");
+    botao.style.backgroundColor="blue";
+    document.getElementById("linkVerde").style.color = "white";
+            break;
+    }
 }
 
-function mouseOverGreen() {
-    document.getElementById("corpo").style.backgroundColor = "green";
-    document.getElementById("linkVerde").style.color = "white";
-}
+/////////////           Exercicio 2           //////////////////////////////////////////
+
 function mouseOut() {
-    document.getElementById("corpo").style.backgroundColor = "white";
+    document.getElementById("body").style.backgroundColor = "white";
     document.getElementById("linkVermelho").style.color = "black";
     document.getElementById("linkVerde").style.color = "black";
     document.getElementById("linkAmarelo").style.color = "black";
@@ -50,16 +39,6 @@ function mouseOut() {
 
 ////////////////              Exercicio 3             //////////////////
 
-function RadioVermelho(){
-    let radios = document.getElementsByTagName("input");
-    for(i = 0; i< radios.length; i++){
-        radios[i].onclick = function(e){
-            if(e.ctrlKey){
-                this.checked = true;
-            }
-        }
-    }
-}
 
 function RadioVermelho(){
     document.getElementById("corpo").style.backgroundColor = "red";
@@ -130,39 +109,50 @@ function AparecerTexto(){
 
 //////////////////      Exercicio 5      //////////////
 
-function SelecaoFormulario(){
-    let radio1 = document.getElementById("cachorro");
-    let radio2 = document.getElementById("gato");
-    let radio3 = document.getElementById("passaro");
+function CheckTodos(todos)
+{
+    var cbox = document.getElementsByName("animal");
 
-    var btn1 = document.getElementById("btn1");
+    for (let i = 0; i < cbox.length; i++) {
+        cbox[i].checked = todos.checked;
+        
+    }
 
-    if(radio1.checked == true && radio2.checked == true || 
-        radio2.checked == true && radio3.checked == true ||
-        radio1.checked == true && radio3.checked == true){
-            btn1.disabled=false;
-        }
+    VerificaChecks();
+}
 
+function VerificaChecks()
+{
+    var boxes = document.getElementsByName("animal");
+    var contagem = 0;
+    boxes.forEach(function(item) {
+        if(item.checked==true){
+            contagem++;
+        }        
+    });
+    if(contagem>1){
+        document.getElementById("btn1").removeAttribute("disabled");
+    }else{
+        document.getElementById("btn1").setAttribute("disabled","disabled");
+    }
 }
 
 /////////////       Exercicio 6       ///////////////
-var tema = 0;
-function Tema(){
-    var texto = document.getElementById("texto");
-    var corpo = document.getElementById("corpo");
 
-    if(tema == 0){
-        texto.style.color = "white";
-        corpo.style.backgroundColor = "black";
-        tema = 1;
-    }else{
-        texto.style.color = "black";
-        corpo.style.backgroundColor = "white";
-        tema = 0;
-    }
+function Tema()
+{
+        var texto = document.getElementById("texto");
+        var corpo = document.getElementById("corpo");
     
+        if(corpo.style.backgroundColor == ("white")){
+            texto.style.color = "white";
+            corpo.style.backgroundColor = "black";
+        }else{
+            texto.style.color = "black";
+            corpo.style.backgroundColor = "white";
+        }
 }
-
+        
 function FonteUperLower(value){
     
     var texto = document.getElementById("texto");
@@ -187,6 +177,8 @@ function Fonte(value){
     }
 }
 
+//////////////////////            Exercicio 9              //////////////////////////
+
 function SubmitButton(){
 
     var nome1 = document.getElementById("nome").value;
@@ -203,6 +195,8 @@ function SubmitButton(){
         
 }
 
+
+////////////////////////              Exercicio 10                   ///////////////////////
 function PessoaFisicaJuridica(valor){
     let rd1 = document.getElementById("rdFisica");
     let rd2 = document.getElementById("rdJuridica");
